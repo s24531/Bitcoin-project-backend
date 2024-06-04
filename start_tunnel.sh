@@ -1,0 +1,1 @@
+ssh -J s24531@szuflandia.pjwstk.edu.pl -L 10001:localhost:18332 testnet@172.19.100.23 -N
