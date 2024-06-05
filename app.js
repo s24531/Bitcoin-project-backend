@@ -8,6 +8,7 @@ const toolsGetDetails = require('./Endpoints/ToolDetailsGET')
 const toolsGetByPrice = require('./Endpoints/ToolByPriceGET')
 const commentsGet = require('./Endpoints/CommentsByProductIdGET')
 const commnetsPost  = require('./Endpoints/CommentsPOST')
+const { exec } = require('child_process')
 var cors = require('cors')
 
 const app = express()
@@ -55,3 +56,15 @@ app.use(
 app.listen(port, () => {
     console.log(`Application works on port: ${port}`)
 })
+
+exec('bash start_tunnel.sh', (error, stdout, stderr) => {
+  if (error) {
+      console.error(`Error executing script: ${error}`);
+      return;
+  }
+  if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+  }
+  console.log(`stdout: ${stdout}`);
+});
