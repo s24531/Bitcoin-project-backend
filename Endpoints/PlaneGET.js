@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const ToolsModel = require('../Schemas/ToolsSchema')
+const PlanesModel = require('../Schemas/PlanesSchema')
 /**
  * @swagger
- * /api/tools:
+ * /api/planes:
  *  get:
- *    description: Use to request all tools
+ *    description: Use to request all planes
  *    responses:
  *      '200':
  *        description: A successful response
@@ -14,9 +14,9 @@ const ToolsModel = require('../Schemas/ToolsSchema')
  *      '500':
  *        description: Internal Server Error
  */
-router.get('/api/tools', async (req, res) => {
+router.get('/api/planes', async (req, res) => {
   try {
-    const documents = await ToolsModel.find(
+    const documents = await PlanesModel.find(
       {},
       '-_id -detailed_description'
     )

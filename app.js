@@ -1,15 +1,21 @@
 const express = require('express')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
-const databaseConnection = require('./DbConnection')
-const toolsGet = require('./Endpoints/ToolsGET')
-const toolsGetById = require('./Endpoints/ToolByIdGET')
-const toolsGetDetails = require('./Endpoints/ToolDetailsGET')
-const toolsGetByPrice = require('./Endpoints/ToolByPriceGET')
-const commentsGet = require('./Endpoints/CommentsByProductIdGET')
-const commnetsPost  = require('./Endpoints/CommentsPOST')
+const bodyParser = require('body-parser');
+const Client = require('bitcoin-core');
 const { exec } = require('child_process')
 var cors = require('cors')
+
+
+const databaseConnection = require('./DbConnection')
+const planesGet = require('./Endpoints/PlaneGET')
+const planesGetById = require('./Endpoints/PlaneByIdGET')
+const planesGetDetails = require('./Endpoints/PlaneDetailsGET')
+const planesGetByPrice = require('./Endpoints/PlaneByPriceGET')
+const commentsGet = require('./Endpoints/CommentsByProductIdGET')
+const commnetsPost  = require('./Endpoints/CommentsPOST')
+const getBalance = require('./Endpoints/GetBalancePOST')
+const sendPayment = require('./Endpoints/SendPaymentPOST')
 
 const app = express()
 const port = 3000
@@ -17,8 +23,8 @@ const port = 3000
 const swaggerOptions = {
     swaggerDefinition: {
       info: {
-        title: 'Tools Page API',
-        description: 'Tools Page API Information',
+        title: 'Planes Page API',
+        description: 'Planes Page API Information',
         contact: {
           name: 'Developer Name',
         },
@@ -35,17 +41,19 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 200,
 }
-
+app.use(bodyParser.json());
 app.use(cors(corsOptions))
 
 databaseConnection();
 
-app.use(toolsGet)
-app.use(toolsGetById)
-app.use(toolsGetDetails)
-app.use(toolsGetByPrice)
+app.use(planesGet)
+app.use(planesGetById)
+app.use(planesGetDetails)
+app.use(planesGetByPrice)
 app.use(commentsGet)
 app.use(commnetsPost)
+app.use(getBalance)
+app.use(sendPayment)
 
 app.use(
   '/api-docs',
@@ -56,15 +64,3 @@ app.use(
 app.listen(port, () => {
     console.log(`Application works on port: ${port}`)
 })
-
-exec('bash start_tunnel.sh', (error, stdout, stderr) => {
-  if (error) {
-      console.error(`Error executing script: ${error}`);
-      return;
-  }
-  if (stderr) {
-      console.error(`stderr: ${stderr}`);
-      return;
-  }
-  console.log(`stdout: ${stdout}`);
-});
