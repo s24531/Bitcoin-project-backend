@@ -2,7 +2,7 @@ const Client = require('bitcoin-core');
 
 const client = new Client({
   host: 'localhost',
-  port: 10001, // lokalny port z tunelowania
+  port: 10001,
   username: 'bartek',
   password: 'barteks',
   wallet: 'mywallet' 
