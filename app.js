@@ -41,6 +41,7 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 200,
 }
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors(corsOptions))
 

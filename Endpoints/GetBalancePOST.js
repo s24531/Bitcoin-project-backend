@@ -12,7 +12,8 @@ const client = new Client({
 
 router.post('/get-balance', async (req, res) => {
     const { address } = req.body;
-  
+    console.log(req.body)
+    
     try {
       const balance = await client.command('getreceivedbyaddress', address);
       res.json({ balance });
