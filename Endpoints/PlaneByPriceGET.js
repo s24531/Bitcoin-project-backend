@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const ToolsModel = require('../Schemas/ToolsSchema')
+const PlanesModel = require('../Schemas/PlanesSchema')
 /**
  * @swagger
- * /api/tools/price:
+ * /api/planes/price:
  *  get:
- *    description: Use to request all tools within a certain price range
+ *    description: Use to request all planes within a certain price range
  *    parameters:
  *      - name: minPrice
  *        in: query
@@ -21,24 +21,24 @@ const ToolsModel = require('../Schemas/ToolsSchema')
  *      '200':
  *        description: A successful response
  *      '404':
- *        description: No tools found in this price range
+ *        description: No planes found in this price range
  *      '500':
  *        description: Internal Server Error
  */
-router.get('/api/tools/price', async (req, res) => {
+router.get('/api/planes/price', async (req, res) => {
     const minPrice = Number(req.query.price)
     const maxPrice = Number(req.query.price)
     try {
-        const tools = await ToolsModel.find({
+        const planes = await PlanesModel.find({
             price: { $gte: minPrice, $lte: maxPrice }
         })
-        if (tools.length > 0) {
-            res.json(tools)
+        if (planes.length > 0) {
+            res.json(planes)
         } else {
-            res.status(404).send('No tools found in this price range')
+            res.status(404).send('No planes found in this price range')
         }
     } catch (error) {
-        console.error('Error while fetching tools:', error)
+        console.error('Error while fetching planes:', error)
     }   
 })
 

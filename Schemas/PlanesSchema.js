@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const toolsSchema = new mongoose.Schema({
+const planesSchema = new mongoose.Schema({
     id: Number, 
     name: String,
     image: String,
@@ -10,4 +10,4 @@ const toolsSchema = new mongoose.Schema({
     stock: Number,
 });
 
-module.exports = mongoose.model("Tools", toolsSchema);  
+module.exports = mongoose.model("Planes", planesSchema);  
