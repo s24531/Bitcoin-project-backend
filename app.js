@@ -2,10 +2,7 @@ const express = require('express')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const bodyParser = require('body-parser');
-const Client = require('bitcoin-core');
-const { exec } = require('child_process')
 var cors = require('cors')
-
 
 const databaseConnection = require('./DbConnection')
 const planesGet = require('./Endpoints/PlaneGET')
@@ -14,11 +11,13 @@ const planesGetDetails = require('./Endpoints/PlaneDetailsGET')
 const planesGetByPrice = require('./Endpoints/PlaneByPriceGET')
 const commentsGet = require('./Endpoints/CommentsByProductIdGET')
 const commnetsPost  = require('./Endpoints/CommentsPOST')
-const getBalance = require('./Endpoints/GetBalancePOST')
-const sendPayment = require('./Endpoints/SendPaymentPOST')
+const GenAddressPost = require('./Endpoints/GenAddressPOST')
+const GenQrPost = require('./Endpoints/GenQrPOST')
 
 const app = express()
-const port = 3000
+const port = 3001
+
+app.use(express.json());
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -53,8 +52,8 @@ app.use(planesGetDetails)
 app.use(planesGetByPrice)
 app.use(commentsGet)
 app.use(commnetsPost)
-app.use(getBalance)
-app.use(sendPayment)
+app.use(GenAddressPost)
+app.use(GenQrPost)
 
 app.use(
   '/api-docs',
