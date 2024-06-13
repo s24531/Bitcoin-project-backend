@@ -12,7 +12,9 @@ const planesGetByPrice = require('./Endpoints/PlaneByPriceGET')
 const commentsGet = require('./Endpoints/CommentsByProductIdGET')
 const commnetsPost  = require('./Endpoints/CommentsPOST')
 const GenAddressPost = require('./Endpoints/GenAddressPOST')
+const CheckBalance = require('./Endpoints/CheckBalance')
 const GenQrPost = require('./Endpoints/GenQrPOST')
+
 
 const app = express()
 const port = 3001
@@ -53,6 +55,7 @@ app.use(planesGetByPrice)
 app.use(commentsGet)
 app.use(commnetsPost)
 app.use(GenAddressPost)
+app.use(CheckBalance)
 app.use(GenQrPost)
 
 app.use(

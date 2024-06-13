@@ -11,12 +11,13 @@ const client = new BitcoinCore({
 
 router.post('/api/generate-qr', async (req, res) => {
   const { address, amount } = req.body;
+
   if (!address || !amount) {
     return res.status(400).json({ error: 'Address and amount are required' });
   }
 
-  const uri = `bitcoin:${address}?amount=${amount}`;
   try {
+    const uri = `bitcoin:${address}?amount=${amount}`;
     const qrCodeUrl = await QRCode.toDataURL(uri);
     res.json({ qrCodeUrl });
   } catch (error) {
