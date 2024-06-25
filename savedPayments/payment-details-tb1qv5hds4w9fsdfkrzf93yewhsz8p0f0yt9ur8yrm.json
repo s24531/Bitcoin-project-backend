@@ -1,0 +1,18 @@
+{
+  "customer": {
+    "name": "Sokolowski",
+    "surname": "Sokołowski",
+    "address": "bydgoska",
+    "city": "Gdańsk",
+    "postalCode": "80-175",
+    "country": "Polska",
+    "phoneNumber": "444444444",
+    "email": "bsokolowski72@gmail.com"
+  },
+  "cartItems": [],
+  "payment": {
+    "address": "tb1qv5hds4w9fsdfkrzf93yewhsz8p0f0yt9ur8yrm",
+    "amount": 0,
+    "status": "No payment received from this address"
+  }
+}

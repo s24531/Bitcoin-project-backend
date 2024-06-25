@@ -12,8 +12,10 @@ const planesGetByPrice = require('./Endpoints/PlaneByPriceGET')
 const commentsGet = require('./Endpoints/CommentsByProductIdGET')
 const commnetsPost  = require('./Endpoints/CommentsPOST')
 const GenAddressPost = require('./Endpoints/GenAddressPOST')
-const CheckBalance = require('./Endpoints/CheckBalance')
+const CheckBalancePost = require('./Endpoints/CheckBalancePOST')
 const GenQrPost = require('./Endpoints/GenQrPOST')
+const PaymentDetailsPOST = require('./Endpoints/PaymentDetailsPOST')
+const EditDetailsPUT = require('./Endpoints/EditDetailsPUT')
 
 
 const app = express()
@@ -55,8 +57,10 @@ app.use(planesGetByPrice)
 app.use(commentsGet)
 app.use(commnetsPost)
 app.use(GenAddressPost)
-app.use(CheckBalance)
+app.use(CheckBalancePost)
 app.use(GenQrPost)
+app.use(PaymentDetailsPOST)
+app.use(EditDetailsPUT)
 
 app.use(
   '/api-docs',
